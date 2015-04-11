@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "文章--分类";
+    Layout = "~/Areas/article/Views/Shared/_LayoutArticle.cshtml";
+}
+@model List<string>
+@using iiceqx.Model;
+<div class="alert alert-info" role="alert">
+    <strong>不想看分类？</strong>点击  <a href="/article/Article/Index" class="alert-success">这里</a>去看所有文章！
+</div>
+<div class="row">
+    <div class="col-sm-12 blog-main" id="divArticle">
+        @Html.Partial("_articletheme", Model)
+    </div>
+</div>
+@section scripts{
+
+    <script type="text/javascript">
+        function PageChaged(pageIndex) {
+            $.ajax({
+                src: "/article/Article/articletheme",
+                data: { "id": pageIndex },
+                success: function (data) {
+                    if (data != "" && data != undefined) {
+                        $("#divArticle").empty();
+                        $("#divArticle").append(data);
+                    }
+                    else {
+                        $("#divArticle").empty();
+                        $("#divArticle").append("<div class=\"alert alert-warning\" role=\"alert\"><strong>Warning!</strong> 暂时没有数据了！<a href=\"/article/Article/Index\" class=\"alert-link\">返回第一页</a>.</div>")
+                    }
+                }
+            })
+        }
+    </script>
+}

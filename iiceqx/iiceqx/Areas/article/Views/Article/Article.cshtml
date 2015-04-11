@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = Model.ArticleMasterTitle;
+    Layout = "~/Areas/article/Views/Shared/_LayoutArticle.cshtml";
+}
+@model Article
+@using iiceqx.Model;
+<div class="row">
+    <div class="col-sm-12 blog-main">
+        @if (Model != null)
+        {
+            <div class="blog-post">
+                <h2 class="blog-post-title">@Html.Raw(Model.ArticleTitle)</h2>
+        <p class="blog-post-meta">
+            @Model.CreateDate.ToString("yyyy-MM-dd HH:mm")<strong>
+                @if (Model.ArticleSouce == "www.cnblogs.com")
+                {
+                    <a href="http://www.cnblogs.com/@(Model.AuthorName)/">@Model.AuthorName</a>
+                }
+            </strong>
+        </p>
+        @Html.Raw(Model.Content)
+    </div><!-- /.blog-post -->
+            <ul class="nav nav-tabs">
+                @if (Model.ArticleId != 1)
+                {
+                    <li role="presentation"><a href="/article/Article/Article/@(Model.ArticleId-1)">前一篇</a></li>
+                }
+                <li role="presentation"><a href="/article/Article/Article/@(Model.ArticleId+1)">下一篇</a></li>
+            </ul>
+        }
+    </div><!-- /.blog-main -->
+</div><!-- /.row -->

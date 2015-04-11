@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "iiceqx-起点";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using iiceqx.Model;
+@{
+    var ischeck = ViewData["isCheck"] == null ? false : (bool)ViewData["isCheck"];
+    var newsList = ViewData["news"] as List<News>;
+}
+<div class="header">
+    <nav>
+        <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="/Home/Index">Home</a></li>
+            <li role="presentation"><a href="/article/Article/articletheme">Article</a></li>
+            <li role="presentation"><a href="/news/news/Index">News</a></li>
+        </ul>
+    </nav>
+    <h2 class="text-success">iiceqx</h2>
+</div>
+
+<div class="jumbotron">
+    <h2>坚持</h2>
+    <blockquote><p class="lead text-justify">一个人，在活着的每一天都努力超越自己，这种坚持本身就是一种了不起的成就！</p><small>yinguilong</small></blockquote>
+    @if (!ischeck)
+    {
+        <p><a class="btn btn-lg btn-success" data-toggle="modal" data-target="#myModal" role="button">报 个 到</a></p>
+    }
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title text-success" id="exampleModalLabel">开始</h3>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">花名:</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-owd" class="control-label">密码:</label>
+                        <input type="password" class="form-control" id="message-pwd">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">悄悄地</button>
+                <button type="button" class="btn btn-primary">走起</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row marketing">
+    @if (newsList != null && newsList.Any())
+    {
+        for (int i = 0; i < newsList.Count; i++)
+        {
+            var strContent = newsList[i].Summary;
+            //if (strContent.Length > 300)
+            //{
+            //    strContent = strContent.Substring(0, 300);
+            //}
+            <div class="col-lg-6">
+                <h4><a href="/news/news/NewsReader?id=@(newsList[i].NewsId)">@(newsList[i].Title)</a></h4>
+                <p>@Html.Raw(strContent)</p>
+            </div>
+        }
+    }
+
+
+</div>
+

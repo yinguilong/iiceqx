@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "iiceqx-新闻";
+    Layout = "~/Areas/news/Views/Shared/_LayoutNews.cshtml";
+}
+@model List<News>
+@using iiceqx.Model;
+<div class="row">
+    <div class="col-sm-12 blog-main" id="divArticle">
+        @Html.Partial("_Index", Model)
+    </div>
+</div>
+@section scripts{
+
+    <script type="text/javascript">
+        function PageChaged(pageIndex) {
+            $.ajax({
+                src: "/article/Article/Index",
+                data: { "id": pageIndex },
+                success: function (data) {
+                    if (data != "" && data != undefined) {
+                        $("#divArticle").empty();
+                        $("#divArticle").append(data);
+                    }
+                    else {
+                        $("#divArticle").empty();
+                        $("#divArticle").append("<div class=\"alert alert-warning\" role=\"alert\"><strong>Warning!</strong> 暂时没有数据了！<a href=\"/news/news/Index\" class=\"alert-link\">返回第一页</a>.</div>")
+                    }
+                }
+            })
+        }
+    </script>
+}

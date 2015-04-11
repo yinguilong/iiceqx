@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/bootstrapcss")
+    @Scripts.Render("~/bundles/bootstrap")
+</head>
+<body>
+    <div class="container">
+        @RenderBody()
+        <footer class="footer">
+            <p>只为阅读！</p>
+            <p>© iiceqx 2014 </p>
+            <p><a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=a7d083147b6adea9ab0fdc5fa4ea445b45689c4e68f6b22c90d8c35b1c8e6078"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="Linux.Net" title="Linux.Net"></a></p>
+        </footer>
+    </div>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

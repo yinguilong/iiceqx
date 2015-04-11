@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="header">
+    <nav>
+        <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="http://www.iiceqx.com">Home</a></li>
+            <li role="presentation"><a href="/article/Article/articletheme">Article</a></li>
+            <li role="presentation"><a href="/news/news/Index">News</a></li>
+        </ul>
+    </nav>
+    <h2 class="text-success">iiceqx</h2>
+</div>
+<div class="row">
+    <div class="col-sm-12 blog-main" id="divArticle">
+        <div class="alert alert-info" role="alert">
+            <strong>FBI Warning! @(ViewData["content"])</strong>点击  <a href="javascript:void(0)" onclick="@Html.Raw(ViewData["directUrl"])" class="alert-danger">这里</a>返回
+        </div>
+    </div>
+</div>
